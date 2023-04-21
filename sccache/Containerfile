@@ -1,0 +1,23 @@
+FROM alpine AS builder
+
+ARG SCCACHE_VERSION=0.8.0
+
+RUN <<EOF
+#!/usr/bin/env sh
+
+set -eux
+
+apk add --update --no-cache wget
+
+wget https://github.com/mozilla/sccache/releases/download/v$SCCACHE_VERSION/sccache-v$SCCACHE_VERSION-x86_64-unknown-linux-musl.tar.gz
+
+tar xvf sccache-v$SCCACHE_VERSION-x86_64-unknown-linux-musl.tar.gz
+mv sccache-v$SCCACHE_VERSION-x86_64-unknown-linux-musl/sccache /usr/bin/sccache
+
+EOF
+
+FROM distroless AS sccache
+
+COPY --from=builder /usr/bin/sccache /usr/bin/sccache
+
+ENTRYPOINT ["/usr/bin/sccache", "--version"]
