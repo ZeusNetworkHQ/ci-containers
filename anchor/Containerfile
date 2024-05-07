@@ -23,8 +23,10 @@ set -eux
 
 apt-get update -y
 apt-get upgrade -y
+
+# TODO: remove libsecp256k1-dev
 apt-get install -y --no-install-recommends \
-    curl gnupg ca-certificates jq pkg-config build-essential libudev-dev
+    curl gnupg ca-certificates jq pkg-config build-essential libudev-dev gcc-multilib git libsecp256k1-dev
 
 echo "Install Node.js and Yarn"
 curl -o- https://deb.nodesource.com/setup_lts.x | bash
