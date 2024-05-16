@@ -57,6 +57,17 @@ jobs:
           bake-target: anchor
 
       - name: Setup container metadata
+        id: meta-btc-rpc-explorer
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ github.repository }}/btc-rpc-explorer
+          tags: |
+            3.4
+          flavor: |
+            latest=auto
+          bake-target: btc-rpc-explorer
+
+      - name: Setup container metadata
         id: meta-electrs
         uses: docker/metadata-action@v5
         with:
@@ -82,6 +93,7 @@ jobs:
         run: |
           jq 'reduce inputs as $in (.; . * $in)' \
             ${{ steps.meta-anchor.outputs.bake-file }} \
+            ${{ steps.meta-btc-rpc-explorer.outputs.bake-file }} \
             ${{ steps.meta-electrs.outputs.bake-file }} \
             ${{ steps.meta-sccache.outputs.bake-file }} > /tmp/bake-metadata.json
 
