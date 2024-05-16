@@ -62,7 +62,7 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ github.repository }}/electrs
           tags: |
-            latest
+            0.10
           flavor: |
             latest=auto
           bake-target: electrs
@@ -82,6 +82,7 @@ jobs:
         run: |
           jq 'reduce inputs as $in (.; . * $in)' \
             ${{ steps.meta-anchor.outputs.bake-file }} \
+            ${{ steps.meta-electrs.outputs.bake-file }} \
             ${{ steps.meta-sccache.outputs.bake-file }} > /tmp/bake-metadata.json
 
       - name: Build container image
