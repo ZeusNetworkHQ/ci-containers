@@ -7,7 +7,7 @@ RUN <<EOF
 
 set -eux
 
-apk add --update --no-cache electrs
+apk add --update --no-cache 'electrs>=0.10'
 electrs --version
 
 EOF
