@@ -1,0 +1,31 @@
+# syntax=docker/dockerfile:1.4
+
+FROM node as builder
+
+WORKDIR /workspace
+
+RUN <<EOF
+#!/usr/bin/env bash
+
+set -eux
+
+apt-get update -y
+apt-get install -y --no-install-recommends \
+    git
+
+git clone --branch v3.4.0 https://github.com/janoside/btc-rpc-explorer
+cd btc-rpc-explorer
+
+npm install
+
+EOF
+
+FROM node-alpine as btc-rpc-explorer
+
+WORKDIR /workspace
+
+COPY --from=builder /workspace/btc-rpc-explorer .
+
+EXPOSE 3002
+
+ENTRYPOINT ["npm", "start"]

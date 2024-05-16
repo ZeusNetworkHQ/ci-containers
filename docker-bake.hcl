@@ -9,6 +9,7 @@ variable "CONTAINER_REGISTRY" {
 group "default" {
   targets = [
     "anchor",
+    "btc-rpc-explorer",
     "electrs",
     "sccache",
   ]
@@ -36,6 +37,17 @@ target "electrs" {
     alpine = "docker-image://docker.io/library/alpine:3.19"
   }
   tags      = ["${CONTAINER_REGISTRY}/electrs:0.10"]
+  platforms = ["linux/amd64", "linux/arm64"]
+}
+
+target "btc-rpc-explorer" {
+  dockerfile = "btc-rpc-explorer/Containerfile"
+  target     = "btc-rpc-explorer"
+  contexts = {
+    node        = "docker-image://docker.io/library/node:16"
+    node-alpine = "docker-image://docker.io/library/node:16-alpine"
+  }
+  tags      = ["${CONTAINER_REGISTRY}/btc-rpc-explorer:3.4"]
   platforms = ["linux/amd64", "linux/arm64"]
 }
 
