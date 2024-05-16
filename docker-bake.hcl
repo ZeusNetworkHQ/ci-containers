@@ -36,7 +36,7 @@ target "electrs" {
     alpine = "docker-image://docker.io/library/alpine:3.19"
   }
   tags      = ["${CONTAINER_REGISTRY}/electrs:0.10"]
-  platforms = ["linux/amd64"]
+  platforms = ["linux/amd64", "linux/arm64"]
 }
 
 target "sccache" {
@@ -50,5 +50,5 @@ target "sccache" {
     SCCACHE_VERSION = "0.8.0"
   }
   tags      = ["${CONTAINER_REGISTRY}/sccache:0.8.0"]
-  platforms = ["linux/amd64"]
+  platforms = ["linux/amd64", "linux/arm64"]
 }
