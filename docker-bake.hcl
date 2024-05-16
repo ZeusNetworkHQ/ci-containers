@@ -9,6 +9,7 @@ variable "CONTAINER_REGISTRY" {
 group "default" {
   targets = [
     "anchor",
+    "electrs",
     "sccache",
   ]
 }
@@ -34,7 +35,7 @@ target "electrs" {
   contexts = {
     alpine = "docker-image://docker.io/library/alpine:3.19"
   }
-  tags      = ["${CONTAINER_REGISTRY}/electrs:latest"]
+  tags      = ["${CONTAINER_REGISTRY}/electrs:0.10"]
   platforms = ["linux/amd64"]
 }
 
