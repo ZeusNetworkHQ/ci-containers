@@ -1,0 +1,15 @@
+# syntax=docker/dockerfile:1.4
+
+FROM alpine AS electrs
+
+RUN <<EOF
+#!/usr/bin/env sh
+
+set -eux
+
+apk add --update --no-cache electrs
+electrs --version
+
+EOF
+
+ENTRYPOINT ["electrs"]
