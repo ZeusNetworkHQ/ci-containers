@@ -57,6 +57,17 @@ jobs:
           bake-target: anchor
 
       - name: Setup container metadata
+        id: meta-electrs
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ github.repository }}/electrs
+          tags: |
+            latest
+          flavor: |
+            latest=auto
+          bake-target: electrs
+
+      - name: Setup container metadata
         id: meta-sccache
         uses: docker/metadata-action@v5
         with:

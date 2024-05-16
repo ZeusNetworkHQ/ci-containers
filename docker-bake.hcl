@@ -28,6 +28,16 @@ target "anchor" {
   platforms = ["linux/amd64"]
 }
 
+target "electrs" {
+  dockerfile = "electrs/Containerfile"
+  target     = "electrs"
+  contexts = {
+    alpine = "docker-image://docker.io/library/alpine:3.19"
+  }
+  tags      = ["${CONTAINER_REGISTRY}/electrs:latest"]
+  platforms = ["linux/amd64"]
+}
+
 target "sccache" {
   dockerfile = "sccache/Containerfile"
   target     = "sccache"
