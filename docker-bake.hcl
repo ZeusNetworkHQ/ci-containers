@@ -44,8 +44,8 @@ target "btc-rpc-explorer" {
   dockerfile = "btc-rpc-explorer/Containerfile"
   target     = "btc-rpc-explorer"
   contexts = {
-    node        = "docker-image://docker.io/library/node:16"
-    node-alpine = "docker-image://docker.io/library/node:16-alpine"
+    node        = "docker-image://docker.io/library/node:18"
+    node-alpine = "docker-image://docker.io/library/node:18-alpine"
   }
   tags      = ["${CONTAINER_REGISTRY}/btc-rpc-explorer:3.4"]
   platforms = ["linux/amd64", "linux/arm64"]
