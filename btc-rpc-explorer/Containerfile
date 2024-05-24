@@ -13,8 +13,9 @@ apt-get update -y
 apt-get install -y --no-install-recommends \
     git
 
-git clone --branch v3.4.0 https://github.com/janoside/btc-rpc-explorer
+git clone --branch master https://github.com/janoside/btc-rpc-explorer
 cd btc-rpc-explorer
+git checkout adb80713ffea2a39fb600a3e61348dbd207bba52
 
 npm install
 

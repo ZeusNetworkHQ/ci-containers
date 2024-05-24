@@ -47,7 +47,7 @@ target "btc-rpc-explorer" {
     node        = "docker-image://docker.io/library/node:18"
     node-alpine = "docker-image://docker.io/library/node:18-alpine"
   }
-  tags      = ["${CONTAINER_REGISTRY}/btc-rpc-explorer:3.4"]
+  tags      = ["${CONTAINER_REGISTRY}/btc-rpc-explorer:nightly"]
   platforms = ["linux/amd64", "linux/arm64"]
 }
 
