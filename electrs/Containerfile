@@ -1,15 +1,50 @@
 # syntax=docker/dockerfile:1.4
 
-FROM alpine AS electrs
+FROM rust as builder
 
 RUN <<EOF
 #!/usr/bin/env sh
 
 set -eux
 
-apk add --update --no-cache 'electrs>=0.10'
-electrs --version
+apt-get update -qqy
+apt-get install -qqy librocksdb-dev curl cargo clang cmake git
 
 EOF
+
+RUN <<EOF
+#!/usr/bin/env sh
+
+set -eux
+
+ROCKSDB_INCLUDE_DIR=/usr/include
+ROCKSDB_LIB_DIR=/usr/lib
+
+git clone https://github.com/Blockstream/electrs
+cd electrs
+git checkout 5db7d2b3f1c8655f95725e43b1c01b86af20bf20
+
+cargo build --release
+cp ./target/release/electrs /usr/bin/electrs
+
+EOF
+
+FROM debian as electrs
+
+COPY --from=builder /usr/bin/electrs /usr/bin/electrs
+
+RUN <<EOF
+#!/usr/bin/env sh
+
+set -eux
+
+apt-get update -qqy
+apt-get install -qqy librocksdb-dev curl
+
+EOF
+
+WORKDIR /
+
+RUN electrs --version
 
 ENTRYPOINT ["electrs"]
