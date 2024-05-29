@@ -18,6 +18,7 @@ cd zeus-scan
 git checkout 92691a080af0ebd7838f4c5258ad670b5fe29414
 
 npm install
+npm run css
 
 EOF
 
