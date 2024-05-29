@@ -15,7 +15,7 @@ apt-get install -y --no-install-recommends \
 
 git clone --branch master https://github.com/ZeusNetworkHQ/zeus-scan
 cd zeus-scan
-git checkout 92691a080af0ebd7838f4c5258ad670b5fe29414
+git checkout 161affe334c349d59dffe0d9f73a1bbe797e73e6
 
 npm install
 npm run css
