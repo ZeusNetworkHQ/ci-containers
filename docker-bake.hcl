@@ -34,10 +34,9 @@ target "electrs" {
   dockerfile = "electrs/Containerfile"
   target     = "electrs"
   contexts = {
-    debian = "docker-image://docker.io/library/debian:bookworm-slim"
-    rust   = "docker-image://docker.io/library/rust:1-slim-bookworm"
+    alpine = "docker-image://docker.io/library/alpine:3.19"
   }
-  tags      = ["${CONTAINER_REGISTRY}/electrs:blockstream-nightly"]
+  tags      = ["${CONTAINER_REGISTRY}/electrs:0.10"]
   platforms = ["linux/amd64", "linux/arm64"]
 }
 
