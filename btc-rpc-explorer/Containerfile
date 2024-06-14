@@ -13,9 +13,9 @@ apt-get update -y
 apt-get install -y --no-install-recommends \
     git
 
-git clone --branch master https://github.com/ZeusNetworkHQ/zeus-scan
-cd zeus-scan
-git checkout 161affe334c349d59dffe0d9f73a1bbe797e73e6
+git clone --branch master https://github.com/ZeusNetworkHQ/zeusscan-ui-v0
+cd zeusscan-ui-v0
+git checkout 76a6ac507fd604b4560ca091312d1e8426b16f12
 
 npm install
 npm run css
@@ -26,7 +26,7 @@ FROM node-alpine as btc-rpc-explorer
 
 WORKDIR /workspace
 
-COPY --from=builder /workspace/zeus-scan .
+COPY --from=builder /workspace/zeusscan-ui-v0 .
 
 EXPOSE 3002
 
