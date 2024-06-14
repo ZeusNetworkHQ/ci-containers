@@ -20,7 +20,7 @@ target "anchor" {
   target     = "anchor"
   contexts = {
     sccache = "target:sccache"
-    solana  = "docker-image://docker.io/solanalabs/solana:v1.18.12"
+    solana  = "docker-image://docker.io/solanalabs/solana:v1.18.11"
   }
   args = {
     RUST_STABLE_TOOLCHAIN = "1.75.0"
