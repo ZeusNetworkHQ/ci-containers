@@ -98,7 +98,7 @@ jobs:
             ${{ steps.meta-sccache.outputs.bake-file }} > /tmp/bake-metadata.json
 
       - name: Build container image
-        uses: docker/bake-action@v4
+        uses: docker/bake-action@v5
         with:
           pull: true
           push: true
